@@ -14,6 +14,8 @@
 #include "qwt_event_pattern.h"
 
 #include <qobject.h>
+#include <qfont.h>
+#include <qpen.h>
 
 class QwtPickerMachine;
 class QwtWidgetOverlay;
@@ -23,8 +25,6 @@ class QMouseEvent;
 class QWheelEvent;
 class QKeyEvent;
 class QPainter;
-class QPen;
-class QFont;
 class QRegion;
 class QPainterPath;
 class QPoint;

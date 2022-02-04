@@ -13,9 +13,8 @@
 #include "qwt_global.h"
 #include "qwt_picker.h"
 #include "qwt_axis_id.h"
-
+#include <qpoint.h>
 class QwtPlot;
-class QPointF;
 class QRectF;
 
 #if QT_VERSION < 0x060000

@@ -12,6 +12,7 @@
 
 #include "qwt_global.h"
 #include "qwt_axis_id.h"
+#include "qwt_legend_data.h"
 #include <qmetatype.h>
 
 class QwtScaleMap;
@@ -19,7 +20,6 @@ class QwtScaleDiv;
 class QwtPlot;
 class QwtText;
 class QwtGraphic;
-class QwtLegendData;
 class QRectF;
 class QPainter;
 class QString;

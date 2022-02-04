@@ -12,7 +12,7 @@
 #include "qwt_clipper.h"
 #include "qwt_color_map.h"
 #include "qwt_scale_map.h"
-
+ 
 #include <qwidget.h>
 #include <qframe.h>
 #include <qrect.h>

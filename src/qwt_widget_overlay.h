@@ -39,6 +39,7 @@ class QRegion;
  */
 class QWT_EXPORT QwtWidgetOverlay : public QWidget
 {
+  Q_OBJECT
   public:
     /*!
        \brief Mask mode

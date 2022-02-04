@@ -11,7 +11,7 @@ qwt_color_map.h
 qwt_column_symbol.h
 qwt_compass.h
 qwt_compass_rose.h
-qwt_compat.h
+#qwt_compat.h
 qwt_counter.h
 qwt_curve_fitter.h
 qwt_date.h
@@ -47,6 +47,7 @@ qwt_plot_curve.h
 qwt_plot_dict.h
 qwt_plot_directpainter.h
 #qwt_plot_glcanvas.h
+qwt_plot_graphicitem.h
 qwt_plot_grid.h
 qwt_plot_histogram.h
 qwt_plot_intervalcurve.h
@@ -100,12 +101,14 @@ qwt_widget_overlay.h
 )
 
 set(qwt_SRCS
+qwt.cpp
 qwt_abstract_legend.cpp
 qwt_abstract_scale.cpp
 qwt_abstract_scale_draw.cpp
 qwt_abstract_slider.cpp
 qwt_analog_clock.cpp
 qwt_arrow_button.cpp
+qwt_bezier.cpp
 qwt_clipper.cpp
 qwt_color_map.cpp
 qwt_column_symbol.cpp
@@ -139,6 +142,7 @@ qwt_picker_machine.cpp
 qwt_pixel_matrix.cpp
 qwt_plot.cpp
 qwt_plot_abstract_barchart.cpp
+qwt_plot_abstract_canvas.cpp
 qwt_plot_axis.cpp
 qwt_plot_barchart.cpp
 qwt_plot_canvas.cpp
@@ -146,6 +150,7 @@ qwt_plot_curve.cpp
 qwt_plot_dict.cpp
 qwt_plot_directpainter.cpp
 #qwt_plot_glcanvas.cpp
+qwt_plot_graphicitem.cpp
 qwt_plot_grid.cpp
 qwt_plot_histogram.cpp
 qwt_plot_intervalcurve.cpp
@@ -168,7 +173,7 @@ qwt_plot_spectrogram.cpp
 qwt_plot_svgitem.cpp
 qwt_plot_textlabel.cpp
 qwt_plot_tradingcurve.cpp
-qwt_plot_xml.cpp
+#qwt_plot_xml.cpp
 qwt_plot_zoneitem.cpp
 qwt_plot_zoomer.cpp
 qwt_point_3d.cpp
@@ -186,6 +191,13 @@ qwt_scale_widget.cpp
 qwt_series_data.cpp
 qwt_slider.cpp
 qwt_spline.cpp
+qwt_spline_basis.cpp
+qwt_spline_cubic.cpp
+qwt_spline_curve_fitter.cpp
+qwt_spline_local.cpp
+qwt_spline_parametrization.cpp
+qwt_spline_pleasing.cpp
+qwt_spline_polynomial.cpp
 qwt_symbol.cpp
 qwt_system_clock.cpp
 qwt_text.cpp
@@ -193,6 +205,8 @@ qwt_text_engine.cpp
 qwt_text_label.cpp
 qwt_thermo.cpp
 qwt_transform.cpp
+qwt_vectorfield_symbol.cpp
+qwt_weeding_curve_fitter.cpp
 qwt_wheel.cpp
 qwt_widget_overlay.cpp
 )
@@ -200,8 +214,8 @@ qwt_widget_overlay.cpp
 set(qwt_FORMS
 )
 
-qt5_wrap_cpp(qwt_HDRS_MOC ${qwt_HDRS})
-qt5_wrap_ui(qwt_FORM_HDRS ${qwt_FORMS})
+qt6_wrap_cpp(qwt_HDRS_MOC ${qwt_HDRS})
+qt6_wrap_ui(qwt_FORM_HDRS ${qwt_FORMS})
 
 if(BUILD_SHARED_LIBS)
   MESSAGE("build shared libs is on")
@@ -211,4 +225,4 @@ else()
   add_library(qwt ${qwt_HDRS} ${qwt_SRCS} ${qwt_HDRS_MOC} ${qwt_FORM_HDRS})
 endif()
 
-target_link_libraries(qwt Qt5::Widgets Qt5::Svg Qt5::Concurrent Qt5::PrintSupport)
+target_link_libraries(qwt Qt6::Widgets Qt6::Svg Qt6::Concurrent Qt6::PrintSupport)
