@@ -1,28 +1,37 @@
-cmake_minimum_required(VERSION 2.8)
-project(qwt)
+cmake_minimum_required(VERSION 3.16)
+project(qwt LANGUAGES CXX)
 
-find_package(Qt4 REQUIRED QtCore QtGui QtSvg QtXml)
-include(${QT_USE_FILE})
-add_definitions(${QT_DEFINITIONS})
+# Collect all Qwt sources
+file(GLOB_RECURSE QWT_SOURCES
+  src/*.cpp
+  src/*.cxx
+  src/*.cc
+)
 
-OPTION(BUILD_SHARED_LIBS "Build shared libraries" ON)
-MARK_AS_ADVANCED(BUILD_SHARED_LIBS)
+file(GLOB_RECURSE QWT_HEADERS
+  src/*.h
+  src/*.hpp
+)
 
-add_subdirectory(src)
-add_subdirectory(textengines)
+# Build the library
+add_library(qwt STATIC ${QWT_SOURCES})
 
-OPTION(BUILD_EXAMPLES "Build examples" OFF)
-MARK_AS_ADVANCED(BUILD_EXAMPLES)
-IF (BUILD_EXAMPLES)
-  add_subdirectory(examples)
-ENDIF()
+# Ensure PIC for static builds
+set_target_properties(qwt PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
-SET(SCI_QWT_INCLUDE "${CMAKE_SOURCE_DIR}/src")
-SET(SCI_QWT_LIBRARY qwt CACHE INTERNAL "Qwt library" FORCE)
+# Public include path
+target_include_directories(qwt PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
 
-set(SCI_QWT_LIBRARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/src)
-set(QWT_USE_FILE "${CMAKE_CURRENT_SOURCE_DIR}/UseQwt.cmake")
+# Install headers
+install(FILES ${QWT_HEADERS}
+  DESTINATION include/qwt
+)
 
-CONFIGURE_FILE("${CMAKE_SOURCE_DIR}/CMake/QwtConfig.cmake.in"
-  "${CMAKE_BINARY_DIR}/QwtConfig.cmake" @ONLY IMMEDIATE)
-EXPORT(TARGETS ${SCI_QWT_LIBRARY} FILE QwtExports.cmake)
+# Install library
+install(TARGETS qwt
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+)
